@@ -7,7 +7,7 @@ router.post('/register', (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash
-    
+    console.log(user)
     Users.add(user)
         .then(newU => {
             res.status(201).json(newU)
@@ -33,7 +33,7 @@ router.post('/login', (req, res) => {
 
             }
             else {
-                res.status(500).json(error)
+                res.status(500).json({message: "You shall not pass!"})
             }
         })
 })
